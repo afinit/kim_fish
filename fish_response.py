@@ -100,7 +100,6 @@ def main(prog_name,argv):
             for c in sorted(cont, key=lambda t: cv2.contourArea(t)):
                 center,radius = cv2.minEnclosingCircle(c)
                 if not sigtime and center[0] > 600 and center[1] > 310:
-                    print 'ALERT'
                     sigtime = True
                 elif not (center[0] > 600 and center[1] > 310) and fish is None:
                     fishcenter = center
