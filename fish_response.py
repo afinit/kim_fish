@@ -10,7 +10,7 @@ def main(prog_name,argv):
     parser = argparse.ArgumentParser( prog=prog_name, description='analyzes the fish',
             formatter_class=argparse.ArgumentDefaultsHelpFormatter )
     parser.add_argument('-i','--infile', dest='infile', metavar='INFILE', type=str, required=True, help='video of the fishies')
-    parser.add_argument('--display', dest='display', action='store_true', default=False, help='display 10% of video frames with a few markers')
+    parser.add_argument('--display', dest='display', action='store_true', default=False, help='display one tenth of the video frames with a few markers')
     parser.add_argument('-o','--outfile', dest='outfile', metavar='OUTFILE', type=str, required=False, help='output file in csv format')
     args = parser.parse_args(argv)
     
