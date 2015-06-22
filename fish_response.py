@@ -7,6 +7,8 @@ import cv2
 
 
 def main(prog_name,argv):
+    PROP_FPS = 5
+    
     parser = argparse.ArgumentParser( prog=prog_name, description='analyzes the fish',
             formatter_class=argparse.ArgumentDefaultsHelpFormatter )
     parser.add_argument('-i','--infile', dest='infile', metavar='INFILE', type=str, required=True, help='video of the fishies')
@@ -28,7 +30,7 @@ def main(prog_name,argv):
         outfile = os.path.splitext(infile)[0] + '.fish' 
 
     cap = cv2.VideoCapture(infile)
-    fps = round(cap.get(cv2.cv.CV_CAP_PROP_FPS))
+    fps = round(cap.get(PROP_FPS))
     if fps != 30:
         print 'Error: FPS is: {0}'.format(fps)
         sys.exit()
@@ -41,13 +43,14 @@ def main(prog_name,argv):
     sigcount = 0
     sigpos = [] 
     currentpos = 1
+    AVI_RATIO = 2
 
     # read beginning of video to initialize loop
     if lastframe is None:
         # skip first 9 frames
         for i in xrange(10):
             ret,frame = cap.read()
-            if cap.get(cv2.cv.CV_CAP_PROP_POS_AVI_RATIO) == 1:
+            if cap.get(AVI_RATIO) == 1:
                 sys.exit()
         
         b,g,r = cv2.split(frame)
@@ -64,7 +67,7 @@ def main(prog_name,argv):
         # count 10 frames
         for i in xrange(10):
             ret,frame = cap.read()
-            if cap.get(cv2.cv.CV_CAP_PROP_POS_AVI_RATIO) == 1:
+            if cap.get(AVI_RATIO) == 1:
                 break
         
         # PROCESS FRAME
