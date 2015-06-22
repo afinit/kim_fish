@@ -31,9 +31,9 @@ def main(prog_name,argv):
 
     cap = cv2.VideoCapture(infile)
     fps = round(cap.get(PROP_FPS))
-    if fps != 30:
-        print 'Error: FPS is: {0}'.format(fps)
-        sys.exit()
+    #if fps != 30:
+    #    print 'Error: FPS is: {0}'.format(fps)
+    #    sys.exit()
 
     # INITIALIZE RUNNING VARIABLES
     lastframe = None
